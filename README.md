@@ -4,6 +4,14 @@
 
 Make sure you are using a Chrome/Chromium browser version that supports MV3 (Chrome 88+) before installing or building this extension.
 
+### ⚠️ Test Page Compatibility Notice
+
+**The official test page ([test.clearurls.xyz](https://test.clearurls.xyz/)) may show errors even when this extension is working correctly.** This is because the test page was designed for the older `webRequest` API (Manifest V2), which is no longer available in Manifest V3 for Chrome/Chromium browsers.
+
+This fork uses Chrome's modern `declarativeNetRequest` API, which works differently but provides the same privacy protection. To verify the extension is working, test with real URLs like `https://example.com/?utm_source=test&fbclid=123` - the tracking parameters should be automatically removed.
+
+If you experience issues, please [open an issue](https://github.com/ecuware/ClearURLS-Chrome/issues/new) with your browser version and the URL that isn't being cleaned.
+
 ---
 
 <a href="https://www.paypal.me/KevinRoebert" target="_blank"><img src="https://raw.githubusercontent.com/KevinRoebert/DonateButtons/master/Paypal.png" alt="Buy Me A Coffee" height="55"></a>
@@ -71,8 +79,21 @@ This fork is designed for Chrome and Chromium-based browsers (Manifest V3). You 
 
 ## Testing
 
-To verify that ClearURLs is working correctly on your system, visit the test page:
-- [https://test.clearurls.xyz/](https://test.clearurls.xyz/)
+To verify that ClearURLs is working correctly, try these real-world tests:
+
+1. **Test with tracking parameters:**
+   - Visit: `https://example.com/?utm_source=test&utm_medium=email&fbclid=123456`
+   - The URL should automatically clean to: `https://example.com/`
+
+2. **Test with Google search results:**
+   - Perform a Google search and click on any result
+   - The tracking parameters should be removed automatically
+
+3. **Check the extension popup:**
+   - Click the ClearURLs icon in your browser toolbar
+   - You should see statistics showing blocked tracking elements
+
+**Note:** The official test page at [test.clearurls.xyz](https://test.clearurls.xyz/) may show errors due to Manifest V3 API differences (see notice at the top of this README).
 
 ## Contributing
 
